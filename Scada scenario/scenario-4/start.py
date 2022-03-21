@@ -49,15 +49,14 @@ def ipscanning():
 
     local_ip = s.getsockname()[0]
     build_ip = local_ip.split(".")
-    builder = f"{build_ip[0]}.{build_ip[1]}"
+    builder = f"{build_ip[0]}.{build_ip[1]}.{build_ip[2]}"
     print(f"[+] Local IP --> {local_ip}")
-    print(f"[+] Scanning ip --> {builder}.255.255\n ")
+    print(f"[+] Scanning ip --> {builder}.255\n ")
 
-    for class_c in range(102, 255):
-        for class_d in range(1, 255):
-            ip = f"{builder}.{class_c}.{class_d}"
-            while threading.active_count() > 400:
-                pass
-            threading.Thread(target=ip_exist, args=[ip]).start()
+    for class_d in range(1, 255):
+        ip = f"{builder}.{class_d}"
+        while threading.active_count() > 400:
+            pass
+        threading.Thread(target=ip_exist, args=[ip]).start()
 
 ipscanning()
