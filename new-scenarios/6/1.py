@@ -18,14 +18,15 @@ def write_to_file(ip):
 def ip_exist(ip):
     global ip_list, hmi
     hmi_ports = (502, 44818, 443)
-    res = subprocess.run(["ping", ip], capture_output=True)
-    if "Approximate round" in res.stdout.decode("UTF-8"):
+    res = subprocess.run(['ping', '-c', '4', ip], capture_output=True)
+    if "from" in res.stdout.decode("UTF-8"):
         ip_list.append(ip)
         print(f"IP --> {ip}")
         write_to_file(ip)
 
 def ipscanning():
     clear_file()
+    print("file")
     global ip_list, hmi
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
@@ -38,6 +39,7 @@ def ipscanning():
 
     for class_d in range(1, 255):
         ip = f"{builder}.{class_d}"
+
         while threading.active_count() > 400:
             pass
         threading.Thread(target=ip_exist, args=[ip]).start()
