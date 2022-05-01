@@ -1,0 +1,55 @@
+@ECHO OFF
+ECHO running
+mkdir C:\cybering
+mkdir C:\Collector	
+mkdir C:\etc\.pm2
+
+ECHO dirs created
+
+
+SET s3path= C:\Users\Admin\Desktop\Packages
+
+move %s3path%\Websockify.exe C:\cybering\
+move %s3path%\Nssm.exe C:\cybering\
+move %s3path%\noVNC C:\cybering\
+move %s3path%\cybringlabs.com.cert C:\cybering\
+move %s3path%\cybringlabs.com.key C:\cybering\
+
+move %s3path%\ecosystem.config.js C:\etc\
+
+move %s3path%\collector C:\Collector
+
+move %s3path%\Microsoft.PowerShell_profile.ps1 C:\Users\Admin\Documents\WindowsPowerShell
+
+ECHO files moved
+
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+choco install python -y
+choco install tightvnc -y
+choco install nodejs -y
+choco install notepadplusplus -y
+npm install pm2@latest -g
+
+ECHO dependencies downloaded
+
+Get-LocalUser -Name "Admin" | Set-LocalUser -Password 'Luck9m1k1$'
+REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v AutoAdminLogon /t REG_SZ /d 1 /f
+REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DefaultDomainName /t REG_SZ /d EC2AMAZ-4KD39KA /f
+REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DefaultUserName /t REG_SZ /d Administrator /fChoco install tightvnc
+
+Choco install nodejs-lts -y
+Choco install noptepadplusplus
+Npm install -g pm2
+[System.Environment]::SetEnvironmentVariable('PM2_HOME', 'C:\etc\.pm2', [System.EnvironmentVariableTarget]::Machine)
+Pm2 start c:\etc\ecosystem.config.js
+Pm2 save
+Npm install -g pm2-windows-startup
+Pm2-startup install
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+Start-Service sshd
+Set-Service -Name sshd -StartupType 'Automatic'
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" /f
+
+ECHO done!
+PAUSE
