@@ -1,0 +1,10 @@
+# extract dir
+
+echo "installing requirements"
+
+# sudo apt install node
+# sudo apt install npm
+npm install
+
+echo "dont forget to update the cred file"
+echo "done"
