@@ -2,7 +2,7 @@
 
 echo "installing requirements"
 
-sudo pyhton install -r requirements.txt
+sudo pip install -r requirements.txt
 sudo apt remove python-socketio -y
 sudo apt remove python3-socketio -y
 sudo pip install "python-socketio[client]"
